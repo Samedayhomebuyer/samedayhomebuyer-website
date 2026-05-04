@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { FillImage } from "@/components/fill-image"
+import heroBg from "@/app/assets/hero-bg.jpg"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect"
@@ -54,8 +55,8 @@ export function Hero() {
         style={{ transform: `translateY(${offset}px) scale(1.1)` }}
       >
         <FillImage
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
-          alt="Beautiful modern house"
+          src={heroBg}
+          alt="Row of modern brick homes under a blue sky"
           sizes="100vw"
           className="object-cover"
           priority

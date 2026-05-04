@@ -64,7 +64,7 @@ const valuationSchema = z.object({
   doorNumber: z.string().min(1, "Enter building number or name"),
   fullAddress: z
     .string()
-    .min(12, "Enter building number and street — your postcode will be confirmed automatically"),
+    .min(12, "Enter building number and street"),
   propertyType: z.string().min(1, "Select property type"),
   bedrooms: z.string().min(1, "Select bedrooms"),
   condition: z.string().min(1, "Select condition"),
@@ -87,6 +87,7 @@ type Props = {
 
 export function ValuationForm({ postcode }: Props) {
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const form = useForm<ValuationFormValues>({
     resolver: zodResolver(valuationSchema),
@@ -105,12 +106,26 @@ export function ValuationForm({ postcode }: Props) {
   })
 
   async function onSubmit(values: ValuationFormValues) {
-    await new Promise((r) => setTimeout(r, 500))
-    console.info("Valuation enquiry", {
-      postcode,
-      ...values,
-    })
-    setSubmitted(true)
+    setSubmitError(null)
+    try {
+      const response = await fetch("/api/forms/valuation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          postcode,
+          ...values,
+        }),
+      })
+
+      if (!response.ok) {
+        setSubmitError("We could not submit your details. Please try again.")
+        return
+      }
+
+      setSubmitted(true)
+    } catch {
+      setSubmitError("We could not submit your details. Please try again.")
+    }
   }
 
   if (submitted) {
@@ -350,6 +365,11 @@ export function ValuationForm({ postcode }: Props) {
             >
               {form.formState.isSubmitting ? "Sending…" : "Submit details"}
             </Button>
+            {submitError ? (
+              <p className="text-sm text-destructive" role="alert">
+                {submitError}
+              </p>
+            ) : null}
           </CardContent>
         </Card>
       </form>

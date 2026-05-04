@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { ReferralForm } from "@/components/referral-form"
 import { CheckCircle, Gift, Clock, FileText } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -45,47 +46,7 @@ export default function ReferPage() {
               Email us your referral details and our team will respond promptly.
             </p>
 
-            <form
-              className="mt-6 space-y-4"
-              action="mailto:info@samedayhomebuyer.co.uk"
-              method="post"
-              encType="text/plain"
-            >
-              <input
-                name="your_name"
-                type="text"
-                required
-                placeholder="Your full name"
-                className="w-full h-11 rounded-md border border-border bg-background px-3 text-sm"
-              />
-              <input
-                name="your_phone"
-                type="tel"
-                required
-                placeholder="Your phone number"
-                className="w-full h-11 rounded-md border border-border bg-background px-3 text-sm"
-              />
-              <input
-                name="your_email"
-                type="email"
-                required
-                placeholder="Your email address"
-                className="w-full h-11 rounded-md border border-border bg-background px-3 text-sm"
-              />
-              <textarea
-                name="property_details"
-                required
-                rows={5}
-                placeholder="Property address, owner situation (e.g. probate/urgent sale), and any other useful details"
-                className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:bg-accent/90 transition-colors"
-              >
-                Submit Referral
-              </button>
-            </form>
+            <ReferralForm />
           </div>
 
           <div className="mt-8 rounded-xl border border-border bg-card p-5">

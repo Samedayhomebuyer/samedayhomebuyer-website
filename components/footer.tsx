@@ -29,13 +29,13 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#how-it-works" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  How It Works
+                <Link href="#why-us" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  Why Choose Us
                 </Link>
               </li>
               <li>
-                <Link href="#why-us" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  Why Choose Us
+                <Link href="#how-it-works" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  How It Works
                 </Link>
               </li>
               <li>

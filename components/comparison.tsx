@@ -1,10 +1,7 @@
 import { Check, X } from "lucide-react"
 
 import { FillImage } from "@/components/fill-image"
-
-/** Residential neighbourhood — readable behind comparison table */
-const COMPARISON_BG_IMAGE =
-  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=85&w=2400&auto=format&fit=crop"
+import comparisonBg from "@/app/assets/toa-heftiba-nrSzRUWqmoI-unsplash.jpg"
 
 const comparisonData = [
   {
@@ -47,7 +44,7 @@ export function Comparison() {
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 scale-105">
           <FillImage
-            src={COMPARISON_BG_IMAGE}
+            src={comparisonBg}
             alt=""
             sizes="100vw"
             className="object-cover object-center brightness-[1.07] saturate-[1.08]"

@@ -1,6 +1,7 @@
 "use client"
 
 import { FillImage } from "@/components/fill-image"
+import processImage from "@/app/assets/ben-elliott-xofT9R1QkPk-unsplash.jpg"
 import { useInView, useParallax } from "@/hooks/use-scroll-animation"
 
 const steps = [
@@ -53,8 +54,8 @@ export function Process() {
               style={{ transform: `translateY(${offset * 0.5}px) scale(1.1)` }}
             >
               <FillImage
-                src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2070&auto=format&fit=crop"
-                alt="Beautiful family home exterior"
+                src={processImage}
+                alt="Aerial view of red-brick terraced homes and rooftops in a UK city"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />

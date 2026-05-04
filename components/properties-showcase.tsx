@@ -1,35 +1,32 @@
 "use client"
 
 import { FillImage } from "@/components/fill-image"
-import { MapPin, Bed, Bath, ArrowRight } from "lucide-react"
+import manchesterImg from "@/app/assets/manchester.jpg"
+import londonImg from "@/app/assets/london.jpg"
+import northeastImg from "@/app/assets/northeast.jpg"
+import { MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useInView } from "@/hooks/use-scroll-animation"
 
 const properties = [
   {
-    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop",
+    image: manchesterImg,
     location: "Manchester",
-    type: "Detached House",
-    beds: 4,
-    baths: 2,
-    status: "Sold in 5 Days"
+    type: "M20 - Completed September 2025",
+    status: "Sold in 5 Days",
   },
   {
-    image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?q=80&w=2070&auto=format&fit=crop",
+    image: northeastImg,
     location: "Birmingham",
-    type: "Semi-Detached",
-    beds: 3,
-    baths: 2,
-    status: "Sold in 7 Days"
+    type: "B15 - Completed August 2025",
+    status: "Sold in 7 Days",
   },
   {
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop",
+    image: londonImg,
     location: "London",
-    type: "Modern Villa",
-    beds: 5,
-    baths: 3,
-    status: "Sold in 3 Days"
-  }
+    type: "SW1 - Completed September 2025",
+    status: "Sold in 3 Days",
+  },
 ]
 
 export function PropertiesShowcase() {
@@ -80,17 +77,7 @@ export function PropertiesShowcase() {
                   <MapPin className="w-4 h-4" />
                   {property.location}
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4 transition-colors duration-300 group-hover:text-primary">{property.type}</h3>
-                <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <Bed className="w-4 h-4" />
-                    {property.beds} Beds
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Bath className="w-4 h-4" />
-                    {property.baths} Baths
-                  </div>
-                </div>
+                <h3 className="text-xl font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">{property.type}</h3>
               </div>
             </div>
           ))}

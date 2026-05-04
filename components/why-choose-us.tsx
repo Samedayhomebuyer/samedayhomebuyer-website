@@ -1,6 +1,7 @@
 "use client"
 
 import { FillImage } from "@/components/fill-image"
+import whyChooseUsBg from "@/app/assets/why-choose-us-bg.jpg"
 import { Zap, Banknote, ShieldCheck, Clock, Home, FileCheck } from "lucide-react"
 import { useInView, useParallax } from "@/hooks/use-scroll-animation"
 
@@ -52,8 +53,8 @@ export function WhyChooseUs() {
             >
               <div style={{ transform: `translateY(${offset * 0.5}px)` }} className="absolute inset-0 transition-transform duration-100">
                 <FillImage
-                  src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop"
-                  alt="Modern house with pool"
+                  src={whyChooseUsBg}
+                  alt="Traditional red-brick terraced homes with greenery"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover scale-110"
                 />

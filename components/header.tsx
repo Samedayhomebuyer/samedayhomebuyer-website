@@ -66,10 +66,10 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {[
-              { name: "How It Works", href: "#how-it-works" },
               { name: "Why Choose Us", href: "#why-us" },
+              { name: "How It Works", href: "#how-it-works" },
               { name: "Reviews", href: "#reviews" },
-              { name: "FAQ", href: "#faq" }
+              { name: "FAQ", href: "#faq" },
             ].map((item, index) => (
               <a 
                 key={item.name}
@@ -141,10 +141,10 @@ export function Header() {
         >
           <nav className="flex flex-col gap-4 py-4 border-t border-border">
             {[
-              { name: "How It Works", href: "#how-it-works" },
               { name: "Why Choose Us", href: "#why-us" },
+              { name: "How It Works", href: "#how-it-works" },
               { name: "Reviews", href: "#reviews" },
-              { name: "FAQ", href: "#faq" }
+              { name: "FAQ", href: "#faq" },
             ].map((item, index) => (
               <a 
                 key={item.name}
