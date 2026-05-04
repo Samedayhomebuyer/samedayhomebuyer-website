@@ -6,11 +6,37 @@ import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Phone, Menu, X } from "lucide-react"
 
+const HOME_SECTION_NAV = [
+  { name: "Why Choose Us", hash: "why-us" },
+  { name: "How It Works", hash: "how-it-works" },
+  { name: "Reviews", hash: "reviews" },
+  { name: "FAQ", hash: "faq" },
+] as const
+
+function scrollToSectionId(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+}
+
 export function Header() {
   const pathname = usePathname()
   const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
+  /** When opening `/` with a hash (e.g. from another page), scroll after the main page mounts. */
+  useEffect(() => {
+    if (pathname !== "/") return
+    const id = window.location.hash.replace(/^#/, "")
+    if (!id) return
+    const tryScroll = () => scrollToSectionId(id)
+    tryScroll()
+    const t1 = window.setTimeout(tryScroll, 50)
+    const t2 = window.setTimeout(tryScroll, 200)
+    return () => {
+      window.clearTimeout(t1)
+      window.clearTimeout(t2)
+    }
+  }, [pathname])
 
   function handleGetOfferClick() {
     setMobileMenuOpen(false)
@@ -47,13 +73,15 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14 lg:h-16' : 'h-16 lg:h-20'}`}>
           {/* Logo */}
-          <a 
-            href="#" 
-            onClick={(e) => {
-              e.preventDefault()
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
+          <Link
+            href="/"
             className="flex items-center gap-2 group cursor-pointer"
+            onClick={(e) => {
+              if (pathname === "/") {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }
+            }}
           >
             <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
               <span className="text-primary-foreground font-bold text-sm">SD</span>
@@ -61,31 +89,25 @@ export function Header() {
             <span className="font-serif text-lg lg:text-xl font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
               Same Day Home Buyer
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            {[
-              { name: "Why Choose Us", href: "#why-us" },
-              { name: "How It Works", href: "#how-it-works" },
-              { name: "Reviews", href: "#reviews" },
-              { name: "FAQ", href: "#faq" },
-            ].map((item, index) => (
-              <a 
-                key={item.name}
-                href={item.href}
+            {HOME_SECTION_NAV.map((item, index) => (
+              <Link
+                key={item.hash}
+                href={`/#${item.hash}`}
                 onClick={(e) => {
-                  e.preventDefault()
-                  const target = document.querySelector(item.href)
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  if (pathname === "/") {
+                    e.preventDefault()
+                    scrollToSectionId(item.hash)
                   }
                 }}
                 className="text-sm text-muted-foreground hover:text-foreground transition-all duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -140,30 +162,24 @@ export function Header() {
           }`}
         >
           <nav className="flex flex-col gap-4 py-4 border-t border-border">
-            {[
-              { name: "Why Choose Us", href: "#why-us" },
-              { name: "How It Works", href: "#how-it-works" },
-              { name: "Reviews", href: "#reviews" },
-              { name: "FAQ", href: "#faq" },
-            ].map((item, index) => (
-              <a 
-                key={item.name}
-                href={item.href}
+            {HOME_SECTION_NAV.map((item, index) => (
+              <Link
+                key={item.hash}
+                href={`/#${item.hash}`}
                 onClick={(e) => {
-                  e.preventDefault()
+                  if (pathname === "/") {
+                    e.preventDefault()
+                    setMobileMenuOpen(false)
+                    window.setTimeout(() => scrollToSectionId(item.hash), 300)
+                    return
+                  }
                   setMobileMenuOpen(false)
-                  setTimeout(() => {
-                    const target = document.querySelector(item.href)
-                    if (target) {
-                      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                    }
-                  }, 300)
                 }}
                 className="text-sm text-muted-foreground hover:text-foreground transition-all duration-300 hover:translate-x-2 cursor-pointer"
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <a 
               href="tel:03300437570" 
