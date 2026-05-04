@@ -8,7 +8,7 @@ export const resend = resendApiKey ? new Resend(resendApiKey) : null
 
 /** Verified sender in Resend (must match a domain you have verified). */
 export const resendFromEmail =
-  process.env.RESEND_FROM_EMAIL ?? "Same Day Home Buyer <onboarding@resend.dev>"
+  process.env.RESEND_FROM_EMAIL ?? "Same Day Home Buyer <joshua@breezeflowai.com>"
 
 /** Where lead emails are delivered. */
 export const leadInboxEmail = process.env.LEAD_INBOX_EMAIL ?? "info@samedayhomebuyer.co.uk"
@@ -29,10 +29,13 @@ export type SendInboxEmailParams = {
   html: string
 }
 
+export type SendInboxEmailResult =
+  | { ok: true }
+  | { ok: false; error: "not_configured" }
+  | { ok: false; error: "send_failed"; message: string; code: string }
+
 /** Sends one notification to the lead inbox. Call only from server code. */
-export async function sendInboxEmail(
-  params: SendInboxEmailParams,
-): Promise<{ ok: true } | { ok: false; error: "not_configured" | "send_failed" }> {
+export async function sendInboxEmail(params: SendInboxEmailParams): Promise<SendInboxEmailResult> {
   if (!resend) {
     return { ok: false, error: "not_configured" }
   }
@@ -47,8 +50,8 @@ export async function sendInboxEmail(
   })
 
   if (error) {
-    console.error("Resend send failed:", error)
-    return { ok: false, error: "send_failed" }
+    console.error("[Resend]", error.name, error.message, error.statusCode ?? "")
+    return { ok: false, error: "send_failed", message: error.message, code: error.name }
   }
 
   return { ok: true }

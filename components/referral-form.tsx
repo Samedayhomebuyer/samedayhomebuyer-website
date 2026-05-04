@@ -35,7 +35,23 @@ export function ReferralForm() {
       })
 
       if (!response.ok) {
-        setSubmitError("We could not send your referral. Please try again.")
+        const payload = (await response.json().catch(() => null)) as {
+          fieldErrors?: Record<string, string[] | undefined>
+          error?: string
+        } | null
+        const fromFields = payload?.fieldErrors
+          ? ([
+              ...(payload.fieldErrors.yourName ?? []),
+              ...(payload.fieldErrors.yourPhone ?? []),
+              ...(payload.fieldErrors.yourEmail ?? []),
+              ...(payload.fieldErrors.propertyDetails ?? []),
+            ].find(Boolean) ?? null)
+          : null
+        setSubmitError(
+          fromFields ??
+            payload?.error ??
+            "We could not send your referral. Please try again.",
+        )
         return
       }
 
@@ -54,6 +70,7 @@ export function ReferralForm() {
         name="your_name"
         type="text"
         required
+        minLength={2}
         placeholder="Your full name"
         value={formState.yourName}
         onChange={(event) =>
@@ -65,6 +82,7 @@ export function ReferralForm() {
         name="your_phone"
         type="tel"
         required
+        minLength={10}
         placeholder="Your phone number"
         value={formState.yourPhone}
         onChange={(event) =>
@@ -86,8 +104,9 @@ export function ReferralForm() {
       <textarea
         name="property_details"
         required
+        minLength={10}
         rows={5}
-        placeholder="Property address, owner situation (e.g. probate/urgent sale), and any other useful details"
+        placeholder="Property address, owner situation (e.g. probate/urgent sale), and any other useful details — at least 10 characters."
         value={formState.propertyDetails}
         onChange={(event) =>
           setFormState((prev) => ({ ...prev, propertyDetails: event.target.value }))
