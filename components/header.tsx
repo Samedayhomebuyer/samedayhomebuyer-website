@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -75,7 +76,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 group cursor-pointer"
+            className="group cursor-pointer"
             onClick={(e) => {
               if (pathname === "/") {
                 e.preventDefault()
@@ -83,12 +84,15 @@ export function Header() {
               }
             }}
           >
-            <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              <span className="text-primary-foreground font-bold text-sm">SD</span>
-            </div>
-            <span className="font-serif text-lg lg:text-xl font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
-              Same Day Home Buyer
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Same Day Home Buyer"
+              width={1013}
+              height={680}
+              priority
+              suppressHydrationWarning
+              className="h-10 lg:h-12 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
+            />
           </Link>
 
           {/* Desktop Navigation */}

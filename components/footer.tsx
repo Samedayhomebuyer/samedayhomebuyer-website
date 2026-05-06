@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, Mail, MapPin } from "lucide-react"
 import { REGIONS } from "@/lib/regions"
 
@@ -11,13 +12,15 @@ export function Footer() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary-foreground rounded-sm flex items-center justify-center">
-                <span className="text-primary font-bold text-sm">SD</span>
-              </div>
-              <span className="font-serif text-lg font-semibold">
-                Same Day Home Buyer
-              </span>
+            <Link href="/" className="mb-4 inline-block">
+              <Image
+                src="/logo-inverted.png"
+                alt="Same Day Home Buyer"
+                width={1013}
+                height={680}
+                suppressHydrationWarning
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="text-primary-foreground/70 text-sm">
               {"The UK's fastest and most trusted cash house buyer. Sell your property in as little as 24 hours."}

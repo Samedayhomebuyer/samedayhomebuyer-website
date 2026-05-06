@@ -2,7 +2,6 @@ import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { PropertiesShowcase } from "@/components/properties-showcase"
-import { Comparison } from "@/components/comparison"
 import { Process } from "@/components/process"
 import { Testimonials } from "@/components/testimonials"
 import { FAQ } from "@/components/faq"
@@ -16,7 +15,6 @@ export default function Home() {
       <Hero />
       <WhyChooseUs />
       <PropertiesShowcase />
-      <Comparison />
       <Process />
       <Testimonials />
       <FAQ />
