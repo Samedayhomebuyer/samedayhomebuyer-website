@@ -25,6 +25,14 @@ export function Footer() {
             <p className="text-primary-foreground/70 text-sm">
               {"The UK's fastest and most trusted cash house buyer. Sell your property in as little as 24 hours."}
             </p>
+            <a
+              href="https://www.crestbourne.co.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex rounded-md border border-primary-foreground/30 bg-primary-foreground/10 px-4 py-3 text-base font-semibold text-primary-foreground hover:bg-primary-foreground/20 transition-colors"
+            >
+              For more property deals, visit Crestbourne Group
+            </a>
           </div>
 
           {/* Quick Links */}
