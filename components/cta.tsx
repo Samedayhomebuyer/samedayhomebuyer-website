@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { FillImage } from "@/components/fill-image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,6 +9,7 @@ import { ArrowRight, Clock, CheckCircle, Phone } from "lucide-react"
 import { useInView, useParallax } from "@/hooks/use-scroll-animation"
 
 export function CTA() {
+  const router = useRouter()
   const [postcode, setPostcode] = useState("")
   const { ref, isInView } = useInView()
   const { ref: parallaxRef, offset } = useParallax(0.2)
@@ -69,23 +71,38 @@ export function CTA() {
               <div className={`bg-card rounded-xl p-6 lg:p-8 shadow-2xl transition-all duration-700 delay-300 hover:shadow-3xl ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <h3 className="text-xl font-semibold text-foreground mb-2">Get Your Free Cash Offer</h3>
                 <p className="text-muted-foreground mb-6">Enter your postcode to get started</p>
-                
-                <div className="space-y-4">
+
+                <form
+                  className="space-y-4"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    const trimmed = postcode.trim()
+                    if (!trimmed) {
+                      document.getElementById("cta-postcode")?.focus()
+                      return
+                    }
+                    router.push(`/valuation/${encodeURIComponent(trimmed)}`)
+                  }}
+                >
                   <Input
+                    id="cta-postcode"
                     type="text"
+                    name="postcode"
                     placeholder="Enter your postcode"
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value)}
+                    autoComplete="postal-code"
                     className="h-12 bg-background border-border text-foreground placeholder:text-muted-foreground transition-all duration-300 focus:scale-[1.02] focus:shadow-md"
                   />
-                  <Button 
-                    size="lg" 
+                  <Button
+                    type="submit"
+                    size="lg"
                     className="w-full h-12 bg-accent text-accent-foreground hover:bg-accent/90 font-semibold group transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                   >
                     Get Free Cash Offer
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
-                </div>
+                </form>
 
                 {/* Phone */}
                 <div className="mt-6 pt-6 border-t border-border text-center">

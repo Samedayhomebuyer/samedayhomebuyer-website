@@ -8,7 +8,7 @@ export const resend = resendApiKey ? new Resend(resendApiKey) : null
 
 /** Verified sender in Resend (must match a domain you have verified). */
 export const resendFromEmail =
-  process.env.RESEND_FROM_EMAIL ?? "Same Day Home Buyer <joshua@breezeflowai.com>"
+  process.env.RESEND_FROM_EMAIL ?? "Same Day Home Buyer <info@samedayhomebuyer.co.uk>"
 
 /** Where lead emails are delivered. */
 export const leadInboxEmail = process.env.LEAD_INBOX_EMAIL ?? "info@samedayhomebuyer.co.uk"

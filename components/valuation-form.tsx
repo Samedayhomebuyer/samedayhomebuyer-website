@@ -174,7 +174,6 @@ export function ValuationForm({ postcode }: Props) {
               name="fullAddress"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base">Find your property</FormLabel>
                   <AddressLookup
                     postcode={postcode}
                     disabled={form.formState.isSubmitting}
