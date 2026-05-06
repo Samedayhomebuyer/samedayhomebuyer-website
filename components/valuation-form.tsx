@@ -118,7 +118,29 @@ export function ValuationForm({ postcode }: Props) {
       })
 
       if (!response.ok) {
-        setSubmitError("We could not submit your details. Please try again.")
+        const payload = (await response.json().catch(() => null)) as {
+          error?: string
+          hint?: string
+          details?: string
+        } | null
+
+        const isResendFailure =
+          response.status === 502 ||
+          payload?.error === "Unable to send submission email."
+
+        const extra =
+          process.env.NODE_ENV === "development" && payload?.details
+            ? ` (${payload.details})`
+            : payload?.hint
+              ? ` ${payload.hint}`
+              : ""
+
+        setSubmitError(
+          isResendFailure
+            ? `We could not submit your details. Please try again.${extra}`
+            : (payload?.error ??
+                "We could not submit your details. Please try again."),
+        )
         return
       }
 
