@@ -99,7 +99,16 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-primary-foreground/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-primary-foreground/60">
-              © {new Date().getFullYear()} Same Day Home Buyer. All rights reserved.
+              © {new Date().getFullYear()}{" "}
+              <a
+                href="https://www.breezeflowai.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary-foreground transition-colors"
+              >
+                BreezeflowAI
+              </a>
+              . All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/privacy-policy" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
