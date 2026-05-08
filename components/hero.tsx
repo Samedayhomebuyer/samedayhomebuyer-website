@@ -151,11 +151,11 @@ export function Hero() {
             </form>
             <div className="mt-4 flex items-center gap-4">
               <a 
-                href="tel:03300437570" 
+                href="tel:02033715544" 
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />
-                <span className="font-medium">0330 043 7570</span>
+                <span className="font-medium">020 3371 5544</span>
               </a>
               <span className="text-muted-foreground">|</span>
               <span className="text-sm text-muted-foreground">Free - No Obligation</span>

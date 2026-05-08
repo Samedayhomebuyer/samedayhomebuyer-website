@@ -108,11 +108,11 @@ export function CTA() {
                 <div className="mt-6 pt-6 border-t border-border text-center">
                   <p className="text-sm text-muted-foreground mb-2">Or call us directly</p>
                   <a 
-                    href="tel:03300437570" 
+                    href="tel:02033715544" 
                     className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-all duration-300 hover:scale-105"
                   >
                     <Phone className="w-5 h-5" />
-                    <span className="text-xl font-bold">0330 043 7570</span>
+                    <span className="text-xl font-bold">020 3371 5544</span>
                   </a>
                 </div>
               </div>

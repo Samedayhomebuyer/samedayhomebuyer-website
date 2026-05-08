@@ -118,11 +118,11 @@ export function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <a 
-              href="tel:03300437570" 
+              href="tel:02033715544" 
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-105"
             >
               <Phone className="w-4 h-4" />
-              0330 043 7570
+              020 3371 5544
             </a>
             <Link
               href="/refer"
@@ -186,11 +186,11 @@ export function Header() {
               </Link>
             ))}
             <a 
-              href="tel:03300437570" 
+              href="tel:02033715544" 
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-all duration-300 hover:translate-x-2"
             >
               <Phone className="w-4 h-4" />
-              0330 043 7570
+              020 3371 5544
             </a>
             <Link
               href="/refer"
